@@ -1,0 +1,24 @@
+{
+  "name": "webapp-express",
+  "version": "1.0.0",
+  "description": "API per gestione film",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "watch": "node --watch app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Damiana-Arangio/webapp-express.git"
+  },
+  "author": "Damiana Arangio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Damiana-Arangio/webapp-express/issues"
+  },
+  "homepage": "https://github.com/Damiana-Arangio/webapp-express#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
