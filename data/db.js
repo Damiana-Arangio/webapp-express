@@ -21,7 +21,7 @@ const connection = mysql.createConnection(
 /* Connessione al Database */
 connection.connect(err => {
     if (err) throw err;                                         // Solleva eccezione in caso di errore
-    console.log('Connessione al database db_blog riuscita!')    // Conferma la connessione
+    console.log('Connessione al database db_movie riuscita!')    // Conferma la connessione
 }
 )
 
