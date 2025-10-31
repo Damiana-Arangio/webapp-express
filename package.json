@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Damiana-Arangio/webapp-express#readme",
   "dependencies": {
+    "chalk": "^4.1.2",
     "express": "^5.1.0"
   }
 }
