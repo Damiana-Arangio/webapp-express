@@ -5,6 +5,8 @@
 ************/
 const express = require('express')                           // Import del modulo Express
 const chalk = require('chalk');                              // Import del pacchetto chalk
+const errorServer = require('./middlewares/errorServer');    // Import del middleware errorServer
+const notFound = require('./middlewares/notFound');          // Import del middleware notFound
 
 
 /***************************
@@ -22,7 +24,11 @@ app.get('/api', (req, res) => {
     res.send("Benvenuto nella home della API per i film!");
 })
 
-
+/***************
+    MIDDLEWARE
+****************/
+app.use(errorServer);             // Registrazione del middleware "errorServer" che gestisce gli errori interni del server 
+app.use(notFound);                // Registrazione del middleware "notFound" che gestisce le rotte inesistenti (404 Not Found)
 
 
 /*********************
