@@ -72,7 +72,8 @@ function show(req, res) {
         }
 
         // Estraggo il singolo film dall'array di risultati restituito da MySQL
-        const movie = movieResults[0];  
+        const movie = movieResults[0];
+        movie.image = req.imagePath + movie.image; // Path completo immagine
 
         // Seconda query -> Recupero recensioni
         connection.query(query_reviews, [id], (err, reviewsResults) => {
