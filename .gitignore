@@ -1,1 +1,5 @@
+# Cartelle da ignorare
 node_modules
+
+# File sensibili
+.env
