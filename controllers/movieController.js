@@ -28,8 +28,15 @@ function index(req, res) {
                 error: "Errore durante il recupero dei film dal database!"
             });
         }
-        // Gestione in caso di successo - invia al client la lista dei post 
-        res.json(results);
+
+        // Aggiungo il path completo dell'immagine a ciascun film
+        const resultsWithFullPath = results.map(movie => {
+            movie.image = req.imagePath + movie.image; // Concatenazione Path completo immagine
+            return movie;
+        });
+
+        // Gestione in caso di successo - invia al client la lista dei film 
+        res.json(resultsWithFullPath);
     })
 }
 
@@ -50,7 +57,7 @@ function show(req, res) {
     // Definizione della query SQL per recuperare le recensioni collegate al film
     const query_reviews = `
         SELECT *
-        FROM movies WHERE id = ?
+        FROM reviews WHERE movie_id = ?
     `;
 
     // Esecuzione query SQL
@@ -73,7 +80,9 @@ function show(req, res) {
 
         // Estraggo il singolo film dall'array di risultati restituito da MySQL
         const movie = movieResults[0];
-        movie.image = req.imagePath + movie.image; // Path completo immagine
+
+        // Aggiungo il path completo dell'immagine al film
+        movie.image = req.imagePath + movie.image;  // Concatenazione Path completo immagine
 
         // Seconda query -> Recupero recensioni
         connection.query(query_reviews, [id], (err, reviewsResults) => {
@@ -86,7 +95,7 @@ function show(req, res) {
             }
 
             // Gestione in caso di successo - invia al client il post completo con l'aggiunta delle recensioni
-            movie.reviews = reviewsResults;
+            movie.reviews = reviewsResults; // Aggiungo recensioni al film
             res.json(movie)
 
         })
