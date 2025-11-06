@@ -55,7 +55,7 @@ function show(req, res) {
     LEFT JOIN reviews
         ON movies.id = reviews.movie_id
     WHERE movies.id = ?
-    
+    GROUP BY movies.id;
 `;
     // Definizione della query SQL per recuperare le recensioni collegate al film
     const query_reviews = `
