@@ -1,7 +1,7 @@
 <h1 align="center"> Web App Express </h1>
+<h1 align="center"> Web App Express </h1>
 
-
-## Consegna
+## Consegna - I PARTE
 Iniziamo a costruire la prima app completa! 
 
 Ecco i primi step
@@ -19,8 +19,18 @@ Inserire le vostre rotte in un router
 Inserire un middleware per le rotte inesistenti
 Inserire un middleware per la gestione errori
 <br>
+
+Integrazione con il Frontend (Milestone 3 - repo "webapp-react")
+- Configuriamo l’app di backend (repo webapp-express) a ricevere chiamate dalla nostra applicazione React, installando e impostando il middleware CORS
+- Proviamo quindi ad effettuare una chiamata Ajax dalla home del progetto React, per ottenere la lista dei libri
+
+
+## Consegna - II PARTE
+Integrazione con il Frontend (Milestone 1 - repo "webapp-react")
 <br>
-<br>
+Miglioriamo l’esperienza dell’utente:
+- Predisponiamo un’API per salvare nel database una nuova recensione legata ad un film
+- Testiamola su postman e verifichiamo che nel DB venga effettivamente inserita una nuova recensione
 
 ## Tecnologie utilizzate
 - Node.js
