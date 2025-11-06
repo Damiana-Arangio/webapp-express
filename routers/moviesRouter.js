@@ -10,8 +10,9 @@ const movieController = require('../controllers/movieController')    // Import C
 const router = express.Router() // Inizializzazione router express
 
 // Definizione delle rotte CRUD 
-router.get('/', movieController.index);          // Mostra tutti i film
-router.get('/:id', movieController.show);        // Mostra un film specifico
+router.get('/', movieController.index);                 // Mostra tutti i film
+router.get('/:id', movieController.show);               // Mostra un film specifico
+router.post('/:id/reviews', movieController.storeReview);     // Crea nuova recensione
 
 /************
     EXPORT

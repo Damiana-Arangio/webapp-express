@@ -1,5 +1,4 @@
 <h1 align="center"> Web App Express </h1>
-<h1 align="center"> Web App Express </h1>
 
 ## Consegna - I PARTE
 Iniziamo a costruire la prima app completa! 

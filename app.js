@@ -25,6 +25,7 @@ const port = 3000;               // Definizione della porta su cui il server dev
 app.use(cors({ origin: 'http://localhost:5174' }))      // Registrazione del middleware cors per consentire al server di specificare quali origini possono accedere alle sue risorse
 app.use(imagePath);                                     // Registrazione del middleware per gestire dinamicamente il path delle immagini
 app.use(express.static('public'));                      // Registrazione del middleware per rendere accessibili i file statici (es. immagini) contenuti nella cartella "public"
+app.use(express.json());                                // Registrazione del middleware per leggere il body delle richieste HTTP
 app.use('/api/movies', moviesRouter);                   // Registrazione del router con prefisso /api 
 app.use(errorServer);                                   // Registrazione del middleware "errorServer" che gestisce gli errori interni del server 
 app.use(notFound);                                      // Registrazione del middleware "notFound" che gestisce le rotte inesistenti (404 Not Found)

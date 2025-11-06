@@ -50,13 +50,13 @@ function show(req, res) {
     /* Definizione della query SQL per recuperare il film richiesto 
        includendo la media dei voti calcolata dalle recensioni tramite LEFT JOIN */
     const query_movie = ` 
-    SELECT movies.*, ROUND(AVG(reviews.vote)) AS average_vote
-    FROM movies
-    LEFT JOIN reviews
-        ON movies.id = reviews.movie_id
-    WHERE movies.id = ?
-    GROUP BY movies.id;
-`;
+        SELECT movies.*, ROUND(AVG(reviews.vote)) AS average_vote
+        FROM movies
+        LEFT JOIN reviews
+            ON movies.id = reviews.movie_id
+        WHERE movies.id = ?
+        GROUP BY movies.id;
+    `;
     // Definizione della query SQL per recuperare le recensioni collegate al film
     const query_reviews = `
         SELECT *
@@ -110,7 +110,41 @@ function show(req, res) {
     })
 }
 
+// --------------------------------------------------- ROTTA STORE --------------------------------------------------------
+function storeReview(req, res) { 
+    
+    const id = parseInt(req.params.id);     // Recupero id dall'URL
+    const {text, vote, name } = req.body;   // Recupero dati recensione dal body della richiesta
+
+    // Definizione della query SQL per aggiungere una recensione
+    const query_newRieview = `
+        INSERT INTO reviews (movie_id, text, vote, name)
+        VALUES(? , ? , ?, ?)
+    `;
+
+    // Esecuzione query passando i valori per aggiungere la recensione
+    connection.query(query_newRieview, [id, text, vote, name], (err, newReviewResult) => {
+
+        // Gestione in caso di errore - codice di stato HTTP 500
+        if(err)
+            return res.status(500).json(
+        {
+            error: "Inserimento recensione fallito!"
+        })
+
+        // Gestione in caso di successo - codice di stato HTTP 201
+        res.status(201) 
+
+        // Restituisco id assegnato automaticamente dal db
+        res.json(
+        { 
+                id: newReviewResult.insertId, 
+                message: "Recensione aggiunta con successo!"
+        });
+    })
+}
+
 /************
     EXPORT
 ************/
-module.exports = { index, show };  // Export funzioni controller
+module.exports = { index, show, storeReview };  // Export funzioni controller
