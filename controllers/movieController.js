@@ -47,13 +47,16 @@ function index(req, res) {
 function show(req, res) {
     const id = parseInt(req.params.id);                        // Recupero id dall'URL
 
-    // Definizione della query SQL per recuperare il film richiesto
+    /* Definizione della query SQL per recuperare il film richiesto 
+       includendo la media dei voti calcolata dalle recensioni tramite LEFT JOIN */
     const query_movie = ` 
-        SELECT * 
-        FROM movies 
-        WHERE id = ? 
-    `;
-
+    SELECT movies.*, ROUND(AVG(reviews.vote)) AS average_vote
+    FROM movies
+    LEFT JOIN reviews
+        ON movies.id = reviews.movie_id
+    WHERE movies.id = ?
+    
+`;
     // Definizione della query SQL per recuperare le recensioni collegate al film
     const query_reviews = `
         SELECT *
@@ -94,8 +97,13 @@ function show(req, res) {
                 });
             }
 
-            // Gestione in caso di successo - invia al client il post completo con l'aggiunta delle recensioni
-            movie.reviews = reviewsResults; // Aggiungo recensioni al film
+            /* Gestione in caso di successo:
+                invia al client i dati del film richiesto 
+                con l'aggiunta delle recensioni e della media dei voti
+            */
+            movie.reviews = reviewsResults;                     // Aggiungo recensioni al film
+            movie.avarage_vote = parseInt(movie.avarage_vote);  // Converto la media dei voti in numero intero per la visualizzazione delle stelline
+            
             res.json(movie)
 
         })
