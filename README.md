@@ -31,6 +31,15 @@ Miglioriamo l’esperienza dell’utente:
 - Predisponiamo un’API per salvare nel database una nuova recensione legata ad un film
 - Testiamola su postman e verifichiamo che nel DB venga effettivamente inserita una nuova recensione
 
+## Consegna - III PARTE
+Integrazione con il Frontend (repo "webapp-react")
+
+## BONUS:
+Implementiamo nuove features come magari inserimento nuovo film.
+<br>
+<br>
+<br>
+
 ## Tecnologie utilizzate
 - Node.js
 - Express.js

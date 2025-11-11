@@ -159,11 +159,8 @@ function storeMovie(req, res) {
         // Gestione in caso di errore - codice di stato HTTP 500
         if (err) {
             console.error("ERRORE QUERY:", err);
-            return res.status(500).json(
-                {
-                    error: "Inserimento film fallito!"
-                })
-            }
+            return next(new Error("Inserimento film fallito: errore interno del server!"));
+
         // Gestione in caso di successo - codice di stato HTTP 201
         res.status(201).json(
             {
