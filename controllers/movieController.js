@@ -31,7 +31,7 @@ function index(req, res) {
 
         // Aggiungo il path completo dell'immagine a ciascun film
         const resultsWithFullPath = results.map(movie => {
-            movie.image = req.imagePath + movie.image; // Concatenazione Path completo immagine
+            movie.image = req.imagePath + movie.image;          // Concatenazione Path completo immagine
             return movie;
         });
 
@@ -110,12 +110,12 @@ function show(req, res) {
     })
 }
 
-// --------------------------------------------------- ROTTA STORE --------------------------------------------------------
+// --------------------------------------------------- ROTTA STORE REVIEW --------------------------------------------------------
 function storeReview(req, res) { 
     
     const id = parseInt(req.params.id);     // Recupero id dall'URL
-    const {text, vote, name } = req.body;   // Recupero dati recensione dal body della richiesta
-
+    const {title, vote, name } = req.body;   // Recupero dati recensione dal body della richiesta
+    
     // Definizione della query SQL per aggiungere una recensione
     const query_newRieview = `
         INSERT INTO reviews (movie_id, text, vote, name)
@@ -133,18 +133,48 @@ function storeReview(req, res) {
         })
 
         // Gestione in caso di successo - codice di stato HTTP 201
-        res.status(201) 
-
-        // Restituisco id assegnato automaticamente dal db
-        res.json(
+        res.status(201) .json(
         { 
-                id: newReviewResult.insertId, 
-                message: "Recensione aggiunta con successo!"
+                id: newReviewResult.insertId,                   // Restituisco id assegnato automaticamente dal db
+                message: "Recensione aggiunta con successo!"    // Restituisco messaggio di conferma
         });
     })
+}
+
+// --------------------------------------------------- ROTTA STORE MOVIE --------------------------------------------------------
+function storeMovie(req, res) {
+
+    const { title, director, abstract } = req.body;   // Recupero dati testuali film dal body della richiesta
+    const image = `${req.file.filename}`;         // Recupero nome del file caricato dal middleware multer
+
+    // Definizione della query SQL per aggiungere un nuovo film al db
+    const query_newMovie = `
+    INSERT INTO movies (image, title, director, abstract)
+    VALUES(? , ? , ?, ?)
+    `;
+
+    // Esecuzione query SQL passando i valori come array
+    connection.query(query_newMovie, [image, title, director, abstract], (err, newMovieResult) => {
+
+        // Gestione in caso di errore - codice di stato HTTP 500
+        if (err) {
+            console.error("ERRORE QUERY:", err);
+            return res.status(500).json(
+                {
+                    error: "Inserimento film fallito!"
+                })
+            }
+        // Gestione in caso di successo - codice di stato HTTP 201
+        res.status(201).json(
+            {
+                id: newMovieResult.insertId,                    // Restituisco id assegnato automaticamente dal db
+                message: "Recensione aggiunta con successo!"    // Restituisco messaggio di conferma
+            });
+    })
+
 }
 
 /************
     EXPORT
 ************/
-module.exports = { index, show, storeReview };  // Export funzioni controller
+module.exports = { index, show, storeReview, storeMovie };      // Export funzioni controller
