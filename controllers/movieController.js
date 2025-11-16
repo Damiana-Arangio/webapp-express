@@ -113,8 +113,8 @@ function show(req, res) {
 // --------------------------------------------------- ROTTA STORE REVIEW --------------------------------------------------------
 function storeReview(req, res) { 
     
-    const id = parseInt(req.params.id);     // Recupero id dall'URL
-    const {title, vote, name } = req.body;   // Recupero dati recensione dal body della richiesta
+    const id = parseInt(req.params.id);      // Recupero id dall'URL
+    const {text, vote, name } = req.body;   // Recupero dati recensione dal body della richiesta
     
     // Definizione della query SQL per aggiungere una recensione
     const query_newRieview = `
@@ -145,7 +145,7 @@ function storeReview(req, res) {
 function storeMovie(req, res) {
 
     const { title, director, abstract } = req.body;   // Recupero dati testuali film dal body della richiesta
-    const image = `${req.file.filename}`;         // Recupero nome del file caricato dal middleware multer
+    const image = `${req.file.filename}`;             // Recupero nome del file caricato dal middleware multer
 
     // Definizione della query SQL per aggiungere un nuovo film al db
     const query_newMovie = `
