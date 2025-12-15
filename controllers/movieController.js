@@ -114,7 +114,7 @@ function show(req, res) {
 function storeReview(req, res) { 
     
     const id = parseInt(req.params.id);      // Recupero id dall'URL
-    const {text, vote, name } = req.body;   // Recupero dati recensione dal body della richiesta
+    const {text, vote, name } = req.body;    // Recupero dati recensione dal body della richiesta
     
     // Definizione della query SQL per aggiungere una recensione
     const query_newRieview = `

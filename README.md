@@ -1,50 +1,80 @@
-<h1 align="center"> Web App Express </h1>
+<p align="center">
+  <img src="./public/imgs/boolean-logo.png" alt="Boolean Logo" width="35">
+</p>
 
-## Consegna - I PARTE
-Iniziamo a costruire la prima app completa! 
+<h1 align="center">Web App Express</h1>
 
-Ecco i primi step
-- Utilizzando il file in allegato, creiamo un database con MySQL Workbench
-- Creiamo una nuova applicazione Express
-- Colleghiamo l’app al db e verifichiamo che tutto funzioni
-- Prepariamo una rotta index per ottenere la lista dei film
-- Prepariamo una rotta show per ottenere i dettagli di un singolo film e le sue recensioni
+Backend di una web application full-stack per la gestione di film e recensioni, sviluppato con Express.js e MySQL.
 
-## Bonus
-Inserire le immagini nel progetto express
-Inserire i dati di connessione al database come variabili d’ambiente
-Inserire le vostre API in controller
-Inserire le vostre rotte in un router
-Inserire un middleware per le rotte inesistenti
-Inserire un middleware per la gestione errori
-<br>
+Frontend collegato:  
+https://github.com/Damiana-Arangio/webapp-react.git
 
-Integrazione con il Frontend (Milestone 3 - repo "webapp-react")
-- Configuriamo l’app di backend (repo webapp-express) a ricevere chiamate dalla nostra applicazione React, installando e impostando il middleware CORS
-- Proviamo quindi ad effettuare una chiamata Ajax dalla home del progetto React, per ottenere la lista dei libri
+---
 
+## Descrizione del progetto
 
-## Consegna - II PARTE
-Integrazione con il Frontend (Milestone 1 - repo "webapp-react")
-<br>
-Miglioriamo l’esperienza dell’utente:
-- Predisponiamo un’API per salvare nel database una nuova recensione legata ad un film
-- Testiamola su postman e verifichiamo che nel DB venga effettivamente inserita una nuova recensione
+Il backend fornisce API REST per:
+- recuperare la lista dei film
+- ottenere il dettaglio di un film con recensioni
+- inserire nuove recensioni
+- inserire nuovi film
 
-## Consegna - III PARTE
-Integrazione con il Frontend (repo "webapp-react")
+Gestisce la persistenza dei dati tramite database MySQL ed è progettato per comunicare con un frontend React.
 
-## BONUS:
-Implementiamo nuove features come magari inserimento nuovo film.
-<br>
-<br>
-<br>
+---
+
+## Funzionalità principali
+
+- Connessione a database MySQL
+- API REST per film e recensioni
+- Recupero dati con JOIN
+- Inserimento dati tramite POST
+- Gestione CORS per integrazione frontend
+- Gestione errori e rotte inesistenti
+- Separazione tra router e controller
+
+---
+
+## Architettura backend
+
+- Express.js
+- Controller dedicati
+- Router modulari
+- Middleware per:
+  - CORS
+  - error handling
+  - rotte non valide
+- Variabili d’ambiente per configurazione DB
+
+---
+
+## Avvio dell’applicazione
+
+Installare le dipendenze:
+```bash
+    npm install
+```
+
+Avviare il server:
+```bash
+    npm run start
+```
+
+Avvio in modalità watch:
+```bash
+    npm run watch
+```
+
+## Prerequisiti
+
+- Node.js
+- MySQL Server
+
 
 ## Tecnologie utilizzate
+
 - Node.js
 - Express.js
 - JavaScript
 - MySQL
 - MySQL Workbench
-- VS Code
-
